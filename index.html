@@ -41,21 +41,25 @@
             animation: fadeIn 1s forwards;
         }
         .products .product {
-            display: inline-block;
-            width: 45%;
+            display: flex;
+            align-items: center;
+            width: 100%;
             background-color: #111;
-            margin: 20px;
+            margin: 20px 0;
             padding: 20px;
             border-radius: 10px;
-            vertical-align: top;
             border: 1px solid #00ff00;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .product img {
-            width: 100%;
+            width: 30%;
             border-radius: 10px;
             border: 1px solid #00ff00;
             transition: transform 0.3s ease;
+        }
+        .product-info {
+            flex: 1;
+            margin-left: 20px;
         }
         .product:hover {
             transform: scale(1.05);
@@ -149,17 +153,21 @@
     <section id="products" class="products">
         <h2>Featured Products</h2>
         <div class="product">
-            <h3>Zap Net - WiFi Deauther Device</h3>
             <img src="zapnet.jpg" alt="Zap Net">
-            <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing.</p>
-            <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
+            <div class="product-info">
+                <h3>Zap Net - WiFi Deauther Device</h3>
+                <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing.</p>
+                <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
+            </div>
         </div>
         <div class="product">
-            <h3>Zap Net Kit</h3>
             <img src="zapnet_kit.png" alt="Zap Net Kit">
-            <p>Build Your own DIY Wi-Fi Deauther Zap Net Device! Evrything you need is in this Kit! </br> </p>
-            <p>Great Especially for the ones starting out in Cyber Security and Electronics!</p>
-            <button class="buy-button" onclick="redirectToWhatsApp('Zap Net Kit')">Buy Now</button>
+            <div class="product-info">
+                <h3>Zap Net Kit</h3>
+                <p>Build Your own DIY Wi-Fi Deauther Zap Net Device! Everything you need is in this Kit!</p>
+                <p>Great especially for beginners in Cyber Security and Electronics!</p>
+                <button class="buy-button" onclick="redirectToWhatsApp('Zap Net Kit')">Buy Now</button>
+            </div>
         </div>
     </section>
 
@@ -168,8 +176,6 @@
         <h2>Tutorials {Coming Soon}</h2>
         <ul>
             <li><a href="#">How to Set Up Zap Net</a></li>
-            <!-- <li><a href="#">Wardriving with the Wardriver Kit</a></li> -->
-            <!-- <li><a href="#">DIY Hacking Tools for Beginners</a></li> -->
         </ul>
     </section>
 

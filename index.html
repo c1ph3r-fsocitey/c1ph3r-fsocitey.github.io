@@ -42,7 +42,7 @@
         }
         .products .product {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             width: 100%;
             background-color: #111;
             margin: 20px 0;
@@ -56,10 +56,7 @@
             border-radius: 10px;
             border: 1px solid #00ff00;
             transition: transform 0.3s ease;
-        }
-        .product-info {
-            flex: 1;
-            margin-left: 20px;
+            margin-right: 20px;
         }
         .product:hover {
             transform: scale(1.05);
@@ -67,6 +64,9 @@
         }
         .product img:hover {
             transform: scale(1.1);
+        }
+        .product-info {
+            flex-grow: 1;
         }
         .buy-button, form button {
             background-color: #00ff00;
@@ -152,14 +152,28 @@
     <!-- Products Section -->
     <section id="products" class="products">
         <h2>Featured Products</h2>
+
+        <!-- Zap Net Product -->
         <div class="product">
             <img src="zapnet.jpg" alt="Zap Net">
             <div class="product-info">
-                <h3>Zap Net - WiFi Deauther Device</h3>
+                <h3>Zap Net - WiFi Deauther Device {Without Battery}</h3>
                 <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing.</p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
             </div>
         </div>
+
+        <!-- Zap Net with Battery Mod Product -->
+        <div class="product">
+            <img src="zapnet_battery_mod.jpg" alt="Zap Net with Battery Mod">
+            <div class="product-info">
+                <h3>Zap Net with Battery Mod</h3>
+                <p>This version of the Zap Net comes with an inbuilt battery mod, making it perfect for on-the-go network testing without needing external power.</p>
+                <button class="buy-button" onclick="redirectToWhatsApp('Zap Net with Battery Mod')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Zap Net Kit Product -->
         <div class="product">
             <img src="zapnet_kit.png" alt="Zap Net Kit">
             <div class="product-info">
@@ -176,6 +190,8 @@
         <h2>Tutorials {Coming Soon}</h2>
         <ul>
             <li><a href="#">How to Set Up Zap Net</a></li>
+            <!-- <li><a href="#">Wardriving with the Wardriver Kit</a></li> -->
+            <!-- <li><a href="#">DIY Hacking Tools for Beginners</a></li> -->
         </ul>
     </section>
 

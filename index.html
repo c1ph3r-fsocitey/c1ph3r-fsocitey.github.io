@@ -11,7 +11,6 @@
             color: #00ff00;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
         header, nav, footer {
             background-color: #000;
@@ -19,9 +18,30 @@
             padding: 20px;
             border-bottom: 2px solid #00ff00;
         }
-        header h1, footer p, nav a {
+        /* Flexbox styling for header to align logo and text side by side */
+        header {
+            display: flex;
+            align-items: center; /* Vertically center items */
+            justify-content: center;
+            padding: 20px;
+        }
+        header img {
+            width: 75px; /* Logo size */
+            margin-right: 20px; /* Space between logo and text */
+        }
+        header div {
+            text-align: left; /* Align text to the left */
+        }
+        header h1 {
             color: #00ff00;
             margin: 0;
+            font-size: 2.5em;
+        }
+        header h2 {
+            color: #00ff00;
+            margin: 5px 0; /* Reduced margin for better spacing */
+            font-size: 1.2em;
+            font-weight: normal;
         }
         nav a {
             padding: 0 15px;
@@ -33,12 +53,12 @@
             color: #009900;
         }
         section {
-            padding: 40px 20px;
+            padding: 20px 20px; /* Reduced padding */
             max-width: 1200px;
             margin: 0 auto;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeIn 1s forwards;
+        }
+        section h2 {
+            margin: 10px 0 20px 0; /* Reduced space around section headings */
         }
         .products .product {
             display: flex;
@@ -96,13 +116,6 @@
         form input::placeholder, form textarea::placeholder {
             color: #009900;
         }
-        /* Animation Effects */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
         .typewriter {
             display: inline-block;
             overflow: hidden;
@@ -119,23 +132,67 @@
             from, to { border-color: transparent; }
             50% { border-color: #00ff00; }
         }
+
+        /* Full-screen Disclaimer Overlay */
+        .disclaimer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .disclaimer-box {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            background-color: #111;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+        }
+        .disclaimer-box p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .accept-button {
+            background-color: #00ff00;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .accept-button:hover {
+            background-color: #009900;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Disclaimer Popup -->
-    <script>
-        window.onload = function() {
-            alert("Disclaimer: All products on C1PH3R-FSOCITEY are to be used for educational purposes only. C1PH3R-FSOCITEY is not responsible for any misuse of the products.");
-        }
-    </script>
+    <!-- Full-Screen Disclaimer Overlay -->
+    <div id="disclaimer-overlay" class="disclaimer-overlay">
+        <div class="disclaimer-box">
+            <p>Disclaimer: All products on C1PH3R-FSOCITEY are to be used for educational purposes only. C1PH3R-FSOCITEY is not responsible for any misuse of the products.</p>
+            <button class="accept-button" onclick="closeDisclaimer()">I Accept</button>
+        </div>
+    </div>
 
-    <!-- Header and Navigation -->
+    <!-- Header with Logo and Text Side by Side -->
     <header>
-        <h1>C1PH3R-FSOCITEY</h1>
-        <h2>India's First Ever Hacking Tools & DIY Store</h2>
-        <p>Your go-to for hacking tools, DIY kits, and tutorials</p>
+        <img src="logo.png" alt="C1PH3R-FSocitey Logo">
+        <div>
+            <h1>C1PH3R-FSOCITEY</h1>
+            <h2>Open Source Hacking Tools for Education and Pentesting</h2>
+        </div>
     </header>
+
+    <!-- Navigation -->
     <nav>
         <a href="#home">Home</a>
         <a href="#products">Products</a>
@@ -146,7 +203,8 @@
     <!-- Home Section with Typewriter Effect -->
     <section id="home">
         <h2 class="typewriter">Welcome to C1PH3R-FSOCITEY</h2>
-        <p>We provide cutting-edge hacking tools, DIY kits, and tutorials for tech enthusiasts and professionals alike. Check out our latest products and get started today!</p>
+        <h4>Hi there! I'm Rahul Thareja, the founder of C1PH3R-FSOCITEY. I am a Robotics Engineer, who's passionate about cyberSecurity! 
+        </br> Our mission is to create open-source security tools that make ethical hacking more accessible and beginner-friendly.</h4>
     </section>
 
     <!-- Products Section -->
@@ -158,7 +216,10 @@
             <img src="zapnet.jpg" alt="Zap Net">
             <div class="product-info">
                 <h3>Zap Net - WiFi Deauther Device {Without Battery}</h3>
-                <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing.</p>
+                <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing. <br> <b>Please Note: This DOES NOT contain Battery.</b></p>
+                <p>Price: ₹ 1200/- for 1 Zap Net
+                </br>   please note: Micro-USB is NOT provided
+                </p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
             </div>
         </div>
@@ -168,7 +229,11 @@
             <img src="zapnet_battery_mod.jpg" alt="Zap Net with Battery Mod">
             <div class="product-info">
                 <h3>Zap Net with Battery Mod</h3>
-                <p>This version of the Zap Net comes with an inbuilt battery mod, making it perfect for on-the-go network testing without needing external power.</p>
+                <p>This version of the Zap Net comes with an inbuilt battery mod, making it perfect for on-the-go network testing without needing external power.
+                </br>   <b>Please Note: This contains Li-Po Battery.</b></p>
+                <p>Price: ₹ 1600/- for 1 Zap Net With Battery Mod
+                </br> please note: Micro-USB is NOT provided
+                </p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Zap Net with Battery Mod')">Buy Now</button>
             </div>
         </div>
@@ -177,9 +242,13 @@
         <div class="product">
             <img src="zapnet_kit.png" alt="Zap Net Kit">
             <div class="product-info">
-                <h3>Zap Net Kit</h3>
-                <p>Build Your own DIY Wi-Fi Deauther Zap Net Device! Everything you need is in this Kit!</p>
-                <p>Great especially for beginners in Cyber Security and Electronics!</p>
+                <h3>Zap Net DIY Kit {Without Battery}</h3>
+                <p>Build your own DIY Wi-Fi Deauther Zap Net Device! Everything you need is in this Kit!</p>
+                <p>Great especially for beginners in Cyber Security and Electronics! </br> </p>
+                <p>Just solder all the components together, upload the code and it's ready to go!</p>
+                <p>Price: ₹ 1200/- for 1 Zap Net Kit containing: 1x Wemos D1 Mini (with header pins), 1x 1.3 inch OLED Display, 1 PCB, 3x Tactile Buttons. </br>
+                    please note: Micro-USB is NOT provided 
+                </p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Zap Net Kit')">Buy Now</button>
             </div>
         </div>
@@ -190,8 +259,6 @@
         <h2>Tutorials {Coming Soon}</h2>
         <ul>
             <li><a href="#">How to Set Up Zap Net</a></li>
-            <!-- <li><a href="#">Wardriving with the Wardriver Kit</a></li> -->
-            <!-- <li><a href="#">DIY Hacking Tools for Beginners</a></li> -->
         </ul>
     </section>
 
@@ -209,6 +276,7 @@
             <p>WhatsApp: <a href="https://wa.me/919971904547">+91 9971904547</a></p>
             <p>Email: <a href="mailto:c1ph3r.fsocitey@gmail.com">c1ph3r.fsocitey@gmail.com</a></p>
         </div>
+        <p>Let's connect on <a href="https://www.linkedin.com/in/thareja-rahul/">LinkedIn</a></p>
     </section>
 
     <!-- Footer -->
@@ -223,6 +291,10 @@
             var phoneNumber = "+919971904547";
             var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
             window.open(whatsappUrl, "_blank");
+        }
+
+        function closeDisclaimer() {
+            document.getElementById('disclaimer-overlay').style.display = 'none';
         }
     </script>
 

@@ -207,6 +207,38 @@
         </br> Our mission is to create open-source security tools that make ethical hacking more accessible and beginner-friendly.</h4>
     </section>
 
+    <!-- Proudly Made in India Section -->
+    <section class="made-in-india">
+        <img src="Make-in-India-Logo-PNG-HD.png" alt="Make in India Logo">
+        <p><b>Proudly Made In India</b></p>
+        <img src="india_flag.png" alt="Indian Flag">
+    </section>
+
+    <style>
+        /* Position the 'Made in India' logo at the top left corner */
+        .made-in-india {
+            position: absolute;
+            top: 10px;  /* Distance from top */
+            left: 10px;  /* Distance from left */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+        }
+        .made-in-india img {
+            margin: 0 10px;
+            width: 100px;  /* Adjust the size of the flag and logo */
+        }
+        .made-in-india p {
+            font-size: 1.1em;
+            color: #00ff00;
+            margin: 0;
+        }
+    </style>
+
     <!-- Products Section -->
     <section id="products" class="products">
         <h2>Featured Products</h2>
@@ -261,7 +293,7 @@
                 <p>The Wardriving PCB is designed for capturing WiFi signals while on the move, helping ethical hackers analyze and test wireless networks.</p>
                 <p>Equipped with the latest in Wi-Fi testing technology, it’s a powerful tool for penetration testing, network mapping, and packet sniffing.</p>
                 <p>Price: ₹ 499/- for 1 Wardriving PCB. </br>
-                please note: This is ONLY PCB (NOT Assmebled)</p>
+                please note: This is ONLY THE PCB (NOT Assmebled)</p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Wardriving PCB')">Buy Now</button>
             </div>
         </div>
@@ -279,18 +311,33 @@
         </div>
     </section>
 
-    <!-- Tutorials Section -->
-    <section id="tutorials">
-        <h2>Tutorials </h2>
-        <ul>
-            <li><a href="https://youtu.be/BOveNABH84Y?si=lKpavXwBR5M6pI0-" target="_blank">How to Set Up Zap Net</a></li>
-        </ul>
-    </section>
+   <!-- Zap Net Setup Tutorial Section -->
+<section id="zapnet-tutorial">
+    <h2>Zap Net Setup Tutorial</h2>
+
+    <!-- Embedded YouTube Video -->
+    <div style="text-align: center;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/BOveNABH84Y?si=lKpavXwBR5M6pI0-" 
+                title="Zap Net Setup Tutorial" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen></iframe>
+    </div>
+
+    <!-- Link to GitHub Repository -->
+    <div style="text-align: center; margin-top: 20px;">
+        <h3>Full Assembly Guide & Code</h3>
+        <a href="https://github.com/c1ph3r-fsocitey/Zap-Net" 
+           target="_blank" 
+           style="color: #00ff00; text-decoration: none; font-size: 1.2em;">
+           Check out the Detailed Guide on GitHub
+        </a>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/{your-form-id}" method="POST">
+        <form action="https://formspree.io/f/mrbzwlab" method="POST">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" placeholder="Your Message" rows="5" required></textarea>

@@ -1,94 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C1PH3R-FSOCITEY | Hacking & Tech Tools</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #000;
-            color: #00ff00;
-            margin: 0;
-            padding: 0;
-        }
-        header, nav, footer {
-            background-color: #000;
-            text-align: center;
-            padding: 20px;
-            border-bottom: 2px solid #00ff00;
-        }
-        /* Flexbox styling for header to align logo and text side by side */
-        header {
-            display: flex;
-            align-items: center; /* Vertically center items */
-            justify-content: center;
-            padding: 20px;
-        }
-        header img {
-            width: 75px; /* Logo size */
-            margin-right: 20px; /* Space between logo and text */
-        }
-        header div {
-            text-align: left; /* Align text to the left */
-        }
-        header h1 {
-            color: #00ff00;
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header h2 {
-            color: #00ff00;
-            margin: 5px 0; /* Reduced margin for better spacing */
-            font-size: 1.2em;
-            font-weight: normal;
-        }
-        nav a {
-            padding: 0 15px;
-            text-decoration: none;
-            color: #00ff00;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #009900;
-        }
-        section {
-            padding: 20px 20px; /* Reduced padding */
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        section h2 {
-            margin: 10px 0 20px 0; /* Reduced space around section headings */
-        }
-        .products .product {
-            display: flex;
-            align-items: flex-start;
-            width: 100%;
-            background-color: #111;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #00ff00;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .product img {
-            width: 30%;
-            border-radius: 10px;
-            border: 1px solid #00ff00;
-            transition: transform 0.3s ease;
-            margin-right: 20px;
-        }
-        .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #00ff00;
-        }
-        .product img:hover {
-            transform: scale(1.1);
-        }
-        .product-info {
-            flex-grow: 1;
-        }
-        .buy-button, form button {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C1PH3R-FSOCITEY</title>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: black;
+      color: #39ff14;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #cart-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 40px;
+    }
+
+    .product {
+      border: 1px solid #39ff14;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background-color: rgba(10, 10, 10, 0.9);
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #39ff14;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    /* === Glitch Effect Styles === */
+    .glitch {
+      color: #00ff00;
+      font-size: 3em;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #00ff00;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitchTop 1s infinite linear;
+      color: #0f0;
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1.5s infinite linear;
+      color: #0f0;
+      z-index: -2;
+    }
+    .buy-button, form button {
             background-color: #00ff00;
             color: #000;
             padding: 10px 20px;
@@ -100,336 +101,527 @@
             border: none;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .buy-button:hover, form button:hover {
+    .buy-button:hover, form button:hover {
             background-color: #009900;
             transform: scale(1.05);
-        }
-        form input, form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #00ff00;
-            background-color: #111;
-            color: #00ff00;
-        }
-        form input::placeholder, form textarea::placeholder {
-            color: #009900;
-        }
-        .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 4px solid #00ff00;
-            animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            0% { width: 0; }
-            70% { width: 100%; }
-            100% { width: 0; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ff00; }
-        }
+    }
 
-        /* Full-screen Disclaimer Overlay */
-        .disclaimer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .disclaimer-box {
-            text-align: center;
-            max-width: 600px;
-            padding: 40px;
-            background-color: #111;
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-        }
-        .disclaimer-box p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .accept-button {
-            background-color: #00ff00;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-        .accept-button:hover {
-            background-color: #009900;
-        }
-    </style>
+    @keyframes glitch {
+      0% { transform: none; }
+      20% { transform: skew(-5deg); }
+      40% { transform: skew(5deg); }
+      60% { transform: skew(-3deg); }
+      80% { transform: skew(3deg); }
+      100% { transform: none; }
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 15px, 0); }
+      20% { clip: rect(0, 9999px, 5px, 0); }
+      30% { clip: rect(0, 9999px, 25px, 0); }
+      40% { clip: rect(0, 9999px, 5px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(25px, 9999px, 40px, 0); }
+      20% { clip: rect(15px, 9999px, 30px, 0); }
+      30% { clip: rect(40px, 9999px, 60px, 0); }
+      40% { clip: rect(20px, 9999px, 35px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Full-Screen Disclaimer Overlay -->
-    <div id="disclaimer-overlay" class="disclaimer-overlay">
-        <div class="disclaimer-box">
-            <p>Disclaimer: All products on C1PH3R-FSOCITEY are to be used for educational purposes only. C1PH3R-FSOCITEY is not responsible for any misuse of the products.</p>
-            <button class="accept-button" onclick="closeDisclaimer()">I Accept</button>
-        </div>
-    </div>
+  <!-- Matrix Background -->
 
-    <!-- Header with Logo and Text Side by Side -->
-    <header>
-        <img src="logo.png" alt="C1PH3R-FSocitey Logo">
-        <div>
-            <h1>C1PH3R-FSOCITEY</h1>
-            <h2>Open Source Hacking Tools for Education and Pentesting</h2>
-        </div>
-    </header>
+  <canvas id="matrix"></canvas>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#tutorials">Tutorials</a>
-        <a href="#contact">Contact</a>
-    </nav>
+ <!-- Disclaimer Modal -->
+  <div id="disclaimer-modal" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* translucent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  font-family: monospace;
+  ">
+  <div style="
+    background: rgba(17, 17, 17, 0.95); /* translucent box */
+    color: #39ff14;
+    padding: 30px;
+    border-radius: 15px; /* rounded rectangle */
+    box-shadow: 0 0 20px #39ff14;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px;
+  ">
+  <h2 style="font-size: 1.5em;">⚠️ DISCLAIMER</h2>
+  <p style="margin: 20px 0;">
+    All products on <b>C1PH3R-FSOCITEY</b> are to be used for </br> <u>educational purposes only</u>.<br>
+    C1PH3R-FSOCITEY is <u>not responsible</u> for any misuse of the products.
+  </p>
+  <button onclick="acceptDisclaimer()" style="
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #39ff14;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  ">I AGREE</button>
+</div>
+</div>
 
-    <!-- Home Section with Typewriter Effect -->
-    <section id="home">
-        <h2 class="typewriter">Welcome to C1PH3R-FSOCITEY</h2>
-        <h4>Hi there! I'm Rahul Thareja, the founder of C1PH3R-FSOCITEY. I am a Robotics Engineer, who's passionate about cyberSecurity! 
-        </br> Our mission is to create open-source security tools that make ethical hacking more accessible and beginner-friendly.</h4>
-    </section>
+  <!-- Terminal Loading Screen -->
+  <div id="loading-screen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:black;color:#39ff14;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;font-family:monospace;">
+    <pre id="loading-text" style="text-align:left;"></pre>
+  </div>
 
-    <!-- Proudly Made in India Section -->
-    <section class="made-in-india">
-        <img src="Make-in-India-Logo-PNG-HD.png" alt="Make in India Logo">
-        <p><b>Proudly Made In India</b></p>
-        <img src="india_flag.png" alt="Indian Flag">
-    </section>
+  <!-- Top Right: Clock and Cart -->
+  <div id="cart-container">
+    <div id="clock" style="text-align:right;font-family:monospace;margin-bottom:5px;"></div>
+  </div>
 
-    <style>
-        /* Position the 'Made in India' logo at the top left corner */
-        .made-in-india {
-            position: absolute;
-            top: 5px;  /* Distance from top */
-            left: 1050px;  /* Distance from left */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #111;
-            padding: 5px;
-            border-radius: 10px;
-            border: 2px solid #00ff00;
-        }
-        .made-in-india img {
-            margin: 0 5px;
-            width: 50px;  /* Adjust the size of the flag and logo */
-        }
-        .made-in-india p {
-            font-size: 1.1em;
-            color: #00ff00;
-            margin: 0;
-        }
-    </style>
+  <!-- Main Content (Hidden Initially) -->
+  <main style="display:none;" id="main-content">
+    <h1 class="glitch" data-text="C1PH3R-FSOCITEY">C1PH3R-FSOCITEY</h1>
 
-    <!-- Products Section -->
-    <section id="products" class="products">
-        <h2>Featured Products</h2>
+    <!-- Product Boxes -->
+        <section id="products" class="products">
 
-        <!-- rf Product -->
-        <div class="product">
-            <img src="spectrum_slayer4.jpeg" alt="spectrum-Slayer">
-            <div class="product-info">
-                <h3>Spectrum Slayer: 2.4/5GHz Wi-Fi Disruption</h3>
-                <p>The Spectrum Slayer is a dual-band Wi-Fi deauther built for maximum network interference.
-                     Capable of kicking devices off 2.4 GHz and 5 GHz networks, it disrupts connections with precision.
-                      Whether for testing security, stress-testing networks, or controlled Wi-Fi chaos, the 
-                      Spectrum Slayer ensures total domination over the airwaves.</p>
-                <p>Price: ₹ 2499 for 1 SpectrumSlayer </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('spectrum-Slayer')">Buy Now</button>
+        <!-- <h2>Featured Products</h2> -->
+
+        <!-- BLE StealthFucker Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="bleStealthFucker.jpeg" alt="BLE Stealth Fucker" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>BLE Stealth Fucker</h3>
+                    <p>BLE StealthFucker is a highly compact and minimalistic BLE jammer designed to disrupt 
+                    Bluetooth Low Energy (BLE) signals. Using the ESP32 Wroom32 module, this tool focuses 
+                    on BLE signal disruption with a streamlined design. Ideal for anyone needing a portable, 
+                    no-nonsense device for BLE network interference, this tool is both efficient and powerful
+                    in jamming BLE communications.</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('BLE Stealth Fucker')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="BLE_StealthFucker.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
+
+        <!-- FreqFucker Ultra Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="FreqFuckerUltra.jpeg" alt="FreqFucker Ultra" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>FreqFucker Ultra</h3>
+                    <p>FreqFucker Ultra is a powerful multi-functional device designed to analyze, jam, spoof, and disrupt 
+                    Bluetooth Low Energy (BLE) signals. Based on the ESP32 Wroom32 module, it comes equipped with advanced
+                    features to target and attack Bluetooth devices. Whether you're performing red team engagements or
+                    studying BLE networks, this tool serves multiple purposes — from signal analysis to jamming and spoofing.</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('FreqFucker Ultra')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="FreqFucker_Ultra.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
+
+        <!-- Blitz Fucker Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="Blitz.jpg" alt="Blitz Fucker" style="width: 300px; height: auto; border-radius: 10px;">
+
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>BlitzFucker - WiFi & BLE Toolkit</h3>
+                    <p>BlitzFucker is a versatile WiFi and BLE hacking tool built on the ESP32 platform. 
+                      This powerful device allows for network analysis, packet capture, rogue access point 
+                      creation, beacon manipulation, and various WiFi & BLE attacks. Whether you are a penetration
+                      tester, a red teamer, or just a hobbyist looking to explore the wireless landscape, 
+                      BlitzFucker provides a feature-rich toolkit to perform a wide range of wireless network security tests.</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('Blitz Fucker')">Buy Now</button>
+                </div>
+
+                <!-- Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="BlitzFucker.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
+
+        <!-- RF Fucker Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="rf_fucker.jpg" alt="RF-Fucker" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>RF Fucker: RF Signal Cloner & Generator</h3>
+                    <p>RF Fucker is a versatile RF signal tool designed to clone, analyze, and generate raw RF signals.
+                    Built for wireless security testing and penetration, this device is essential for radio frequency
+                    analysis, signal manipulation, and testing various RF vulnerabilities.</p>
+                    <p>The RF Fucker allows you to simulate RF environments and assess how systems react to different 
+                    frequencies, making it a powerful tool for RF professionals and researchers.</p>
+                    <p>Price: ₹ 2499 for 1 RF Fucker</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('RF Fucker')">Buy Now</button>
+                </div>
+
+                <!-- Video (update the src as needed) -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="RF_Fucker.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
         
-        <!-- rf Product -->
-        <div class="product">
-            <img src="rf.jpeg" alt="RF-Annhilator">
-            <div class="product-info">
-                <h3>RF Annihilator: 433 MHz Domination</h3>
-                <p>The RF Annihilator is an elite RF hacking tool built for those who demand complete 
-                    control over the 433 MHz spectrum. Equipped with replay attack capabilities, a raw 
-                    signal reader, signal analyzer, and a random signal generator, this beast lets you 
-                    intercept, analyze, and manipulate RF signals with ease. Whether you're testing 
-                    vulnerabilities, reverse-engineering remote signals, or unleashing controlled chaos, 
-                    the RF Annihilator is your go-to weapon for RF domination.</p>
-                <p><b>Please Note: This device is battery-free and relies on external power sources.</p>
-                <p>Price: ₹ 2999 for 1 RF-Annihilator </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('RF-Annihilator')">Buy Now</button>
+        <!-- Spectrum Slayer Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="spectrum_slayer4.jpeg" alt="spectrum-Slayer" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>Spectrum Slayer: 2.4/5GHz Wi-Fi Disruption</h3>
+                    <p>The Spectrum Slayer is a dual-band Wi-Fi deauther built for maximum network interference.
+                      Capable of kicking devices off 2.4 GHz and 5 GHz networks, it disrupts connections with precision.
+                      Whether for testing security, stress-testing networks, or controlled Wi-Fi chaos, the
+                      Spectrum Slayer ensures total domination over the airwaves.</p>
+                    <p>Price: ₹ 1999 for 1 Spectrum Slayer</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('spectrum-Slayer')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="SpectrumSlayer.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
 
-        <!-- Chaos-Injector Product -->
-        <div class="product">
-            <img src="Chaos.png" alt="Chaos-Injector">
-            <div class="product-info">
-                <h3>Chaos Injector: The Ultimate BadUSB Tool</h3>
-                <p>Chaos Injector is a feature-packed badUSB that merges WiFi capability, NeoPixel LED, 
-                    a sleek display, navigation buttons, and onboard memory for payload storage. 
-                    Designed for penetration testers and enthusiasts, it offers seamless navigation, 
-                    dynamic visual feedback, and the ability to execute complex tasks with precision. 
-                    Chaos Injector redefines versatility and style in a compact tool, putting the power 
-                    of controlled disruption at your fingertips.</p>
-                <p><b>Please Note: This device is battery-free and relies on external power sources.</p>
-                <p>Price: ₹ 1899 for 1 Chaos-Injector </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('Chaos-Injector')">Buy Now</button>
+
+        <!-- RF Annihilator Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="rf.jpeg" alt="RF-Annhilator" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>RF Annihilator: 433 MHz Domination</h3>
+                    <p>The RF Annihilator is an elite RF hacking tool built for those who demand complete
+                    control over the 433 MHz spectrum. Equipped with replay attack capabilities, a raw
+                    signal reader, signal analyzer, and a random signal generator, this beast lets you
+                    intercept, analyze, and manipulate RF signals with ease.</p>
+                    <p>Whether you're testing vulnerabilities, reverse-engineering remote signals, or unleashing 
+                    controlled chaos, the RF Annihilator is your go-to weapon for RF domination.</p>
+                    <p><b>Please Note: This device is battery-free and relies on external power sources.</b></p>
+                    <p>Price: ₹ 2999 for 1 RF-Annihilator</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('RF Annihilator')">Buy Now</button>
+                </div>
+
+                <!-- Video (self-hosted) -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="RF_Annihilator.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
+
+
+        <!-- Chaos Injector Product -->
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="Chaos.png" alt="Chaos-Injector" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>Chaos Injector: The Ultimate BadUSB Tool</h3>
+                    <p>Chaos Injector is a feature-packed badUSB that merges WiFi capability, NeoPixel LED,
+                    a sleek display, navigation buttons, and onboard memory for payload storage. Designed for
+                    penetration testers and enthusiasts, it offers seamless navigation, dynamic visual feedback,
+                    and the ability to execute complex tasks with precision.</p>
+                    <p>Chaos Injector redefines versatility and style in a compact tool, putting the power
+                    of controlled disruption at your fingertips.</p>
+                    <p><b>Please Note: This device is battery-free and relies on external power sources.</b></p>
+                    <p>Price: ₹ 1899 for 1 Chaos-Injector</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('Chaos Injector')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="Chaos_Injector.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
 
         <!-- DisruptorX Product -->
-        <div class="product">
-            <img src="DisruptorX.png" alt="DisruptorX">
-            <div class="product-info">
-                <h3>DisruptorX: Unleash the Power of Advanced Wireless Disruption</h3>
-                <p>DisruptorX is your ultimate tool for scanning, analyzing, and disrupting wireless networks. With features like network jamming,
-                     BLE spoofing, and the powerful Sour Apple attack, it’s perfect for security testing and advanced connectivity exploration. 
-                     Compact, versatile, and powerful, DisruptorX lets you push the boundaries of wireless technology.</p>
-                <p><b>Please Note: This device is battery-free and relies on external power sources.</p>
-                <p>Price: ₹ 1999 for 1 DisruptorX </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('DisruptorX')">Buy Now</button>
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="DisruptorX.png" alt="DisruptorX" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>DisruptorX: Unleash the Power of Advanced Wireless Disruption</h3>
+                    <p>DisruptorX is your ultimate tool for scanning, analyzing, and disrupting wireless networks. With features like network jamming,
+                    BLE spoofing, and the powerful Sour Apple attack, it’s perfect for security testing and advanced connectivity exploration.</p>
+                    <p>Compact, versatile, and powerful, DisruptorX lets you push the boundaries of wireless technology.</p>
+                    <p><b>Please Note: This device is battery-free and relies on external power sources.</b></p>
+                    <p>Price: ₹ 1999 for 1 DisruptorX</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('DisruptorX')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="DisruptorX.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
+
 
         <!-- Meow-Fi Product -->
-        <div class="product">
-            <img src="meowfi.jpg" alt="Meow-Fi">
-            <div class="product-info">
-                <h3>Meow-Fi: The Cutest Deauth Detector</h3>
-                <p>Meet Meow-Fi, your adorable portable companion for network security. 
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="meowfi.jpg" alt="Meow-Fi" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>Meow-Fi: The Cutest Deauth Detector</h3>
+                    <p>Meet Meow-Fi, your adorable portable companion for network security.
                     Not only can Meow-Fi detect deauthentication attacks, but its cute and handy design also makes it a perfect tech pet!</p>
-                <p><b>Please Note: This device is battery-free and relies on external power sources. </br> More Firmwares would be released soon!</b></p>
-                <p>Price: ₹ 1099/- for 1 Meow-Fi </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('Meow-Fi')">Buy Now</button>
+                    <p><b>Please Note: This device is battery-free and relies on external power sources. <br> More firmwares would be released soon!</b></p>
+                    <p>Price: ₹ 1099/- for 1 Meow-Fi</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('Meow Fi')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="Meow_fi.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
+
 
         <!-- Zap Net Product -->
-        <div class="product">
-            <img src="zapnet.jpg" alt="Zap Net">
-            <div class="product-info">
-                <h3>Zap Net - WiFi Deauther Device {Without Battery}</h3>
-                <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing. <br> <b>Please Note: This DOES NOT contain Battery.</b></p>
-                <p>Price: ₹ 1200/- for 1 Zap Net
-                </br>   please note: Micro-USB is NOT provided
-                </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="zapnet.jpg" alt="Zap Net" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>Zap Net - WiFi Deauther Device {Without Battery}</h3>
+                    <p>Take control of your WiFi with the Zap Net, the ultimate WiFi deauther device for network testing.</p>
+                    <p><b>Please Note: This DOES NOT contain Battery.</b></p>
+                    <p>Price: ₹ 1200/- for 1 Zap Net <br> Please note: Micro-USB is NOT provided</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('Zap Net')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="ZapNet.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
+
 
         <!-- Zap Net with Battery Mod Product -->
-        <div class="product">
-            <img src="zapnet_battery_mod.jpg" alt="Zap Net with Battery Mod">
-            <div class="product-info">
-                <h3>Zap Net with Battery Mod</h3>
-                <p>This version of the Zap Net comes with an inbuilt battery mod, making it perfect for on-the-go network testing without needing external power.
-                </br>   <b>Please Note: This contains Li-Po Battery.</b></p>
-                <p>Price: ₹ 1600/- for 1 Zap Net With Battery Mod
-                </br> please note: Micro-USB is NOT provided
-                </p>
-                <button class="buy-button" onclick="redirectToWhatsApp('Zap Net with Battery Mod')">Buy Now</button>
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px;">
+            
+            <!-- Product Image -->
+            <img src="zapnet_battery_mod.jpg" alt="Zap Net with Battery Mod" style="width: 300px; height: auto; border-radius: 10px;">
+            
+            <!-- Info + Video container -->
+            <div style="display: flex; flex-direction: row; gap: 20px; flex: 1; align-items: flex-start;">
+                
+                <!-- Product Info -->
+                <div class="product-info" style="flex: 1;">
+                    <h3>Zap Net with Battery Mod</h3>
+                    <p>This version of the Zap Net comes with an inbuilt battery mod, making it perfect for on-the-go network testing without needing external power.</p>
+                    <p><b>Please Note: This contains Li-Po Battery.</b></p>
+                    <p>Price: ₹ 1600/- for 1 Zap Net With Battery Mod<br> Please note: Micro-USB is NOT provided</p>
+                    <button class="buy-button" onclick="redirectToWhatsApp('Zap Net with Battery Mod')">Buy Now</button>
+                </div>
+
+                <!-- Self-hosted Video -->
+                <video controls autoplay muted loop style="width: 300px; border-radius: 10px;">
+                    <source src="ZapNet.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
         </div>
 
+
         <!-- Zap Net Kit Product -->
-        <div class="product">
-            <img src="zapnet_kit.png" alt="Zap Net Kit">
-            <div class="product-info">
+        <div class="product" style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;">
+            <img src="zapnet_kit.png" alt="Zap Net Kit" style="width: 100%; max-width: 300px; height: auto; border-radius: 10px;">
+            <div class="product-info" style="max-width: 600px;">
                 <h3>Zap Net DIY Kit {Without Battery}</h3>
                 <p>Build your own DIY Wi-Fi Deauther Zap Net Device! Everything you need is in this Kit!</p>
-                <p>Great especially for beginners in Cyber Security and Electronics! </br> </p>
+                <p>Great especially for beginners in Cyber Security and Electronics!</p>
                 <p>Just solder all the components together, upload the code and it's ready to go!</p>
-                <p>Price: ₹ 1200/- for 1 Zap Net Kit containing: 1x Wemos D1 Mini (with header pins), 1x 1.3 inch OLED Display, 1 PCB, 3x Tactile Buttons. </br>
-                    please note: Micro-USB is NOT provided 
-                </p>
+                <p>Price: ₹ 1200/- for 1 Zap Net Kit containing: 1x Wemos D1 Mini (with header pins), 1x 1.3 inch OLED Display, 1 PCB, 3x Tactile Buttons. <br>
+                Please note: Micro-USB is NOT provided</p>
                 <button class="buy-button" onclick="redirectToWhatsApp('Zap Net Kit')">Buy Now</button>
             </div>
         </div>
 
-            <!-- Wardriving PCB Product -->
-        <div class="product">
-            <img src="wardriver_PCB.png" alt="Wardriving PCB">
-            <div class="product-info">
-                <h3>Wardriving PCB</h3>
-                <p>The Wardriving PCB is designed for capturing WiFi signals while on the move, helping ethical hackers analyze and test wireless networks.</p>
-                <p>Equipped with the latest in Wi-Fi testing technology, it’s a powerful tool for penetration testing, network mapping, and packet sniffing.</p>
-                <p>Price: ₹ 499/- for 1 Wardriving PCB. </br>
-                please note: This is ONLY THE PCB (NOT Assmebled)</p>
-                <button class="buy-button" onclick="redirectToWhatsApp('Wardriving PCB')">Buy Now</button>
-            </div>
-        </div>
+  </main>
 
-        <!-- C1PH3R-FSOCITEY T-shirt Product -->
-        <div class="product">
-            <img src="tees_final.png" alt="C1PH3R-FSOCITEY T-shirt">
-            <div class="product-info">
-                <h3>C1PH3R-FSOCITEY T-shirt</h3>
-                <p>Show off your love for hacking and open-source tools with this exclusive C1PH3R-FSOCITEY T-shirt.</p>
-                <p>Made from 100% cotton, this stylish black tee features the C1PH3R-FSOCITEY logo with a bold green and black design—perfect for every ethical hacker and tech enthusiast.</p>
-                <p>Price: ₹ 499/- for 1 C1PH3R-FSOCITEY T-shirt</p>
-                <button class="buy-button" onclick="redirectToWhatsApp('C1PH3R-FSOCITEY T-shirt')">Buy Now</button>
-            </div>
-        </div>
-    </section>
+  <!-- Matrix Animation Script -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-   <!-- Zap Net Setup Tutorial Section -->
-<section id="zapnet-tutorial">
-    <h2>Zap Net Setup Tutorial</h2>
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
 
-    <!-- Embedded YouTube Video -->
-    <div style="text-align: center;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/BOveNABH84Y?si=lKpavXwBR5M6pI0-" 
-                title="Zap Net Setup Tutorial" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen></iframe>
-    </div>
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#39ff14";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 33);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 
-    <!-- Link to GitHub Repository -->
-    <div style="text-align: center; margin-top: 20px;">
-        <h3>Full Assembly Guide & Code</h3>
-        <a href="https://github.com/c1ph3r-fsocitey/Zap-Net" 
-           target="_blank" 
-           style="color: #00ff00; text-decoration: none; font-size: 1.2em;">
-           Check out the Detailed Guide on GitHub
-        </a>
-    </div>
-</section>
+  <!-- Terminal Loading Script -->
+  <script>
+    const loadingLines = [
+      "> Booting up BlackNet...",
+      "> Spoofing MAC Address...",
+      "> Launching Exploit Engine...",
+      "> Bypassing Firewalls...",
+      "> Cloning RF Signals...",
+      "> You are now inside. Welcome, Ghost."
+    ];
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/mrbzwlab" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <div class="contact-info">
-            <p>Or reach us via:</p>
-            <p>WhatsApp: <a href="https://wa.me/919971904547">+91 9971904547</a></p>
-            <p>Email: <a href="mailto:c1ph3r.fsocitey@gmail.com">c1ph3r.fsocitey@gmail.com</a></p>
-        </div>
-        <p>Let's connect on <a href="https://www.linkedin.com/in/thareja-rahul/">LinkedIn</a></p>
-    </section>
+    const loadingText = document.getElementById("loading-text");
+    let lineIndex = 0;
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 C1PH3R-FSOCITEY. All Rights Reserved.</p>
-    </footer>
+    function typeLine() {
+      if (lineIndex < loadingLines.length) {
+        loadingText.innerHTML += loadingLines[lineIndex] + "\n";
+        lineIndex++;
+        setTimeout(typeLine, 500);
+      } else {
+        setTimeout(() => {
+          document.getElementById("loading-screen").style.display = "none";
+          document.getElementById("main-content").style.display = "block";
+        }, 1000);
+      }
+    }
+    typeLine();
+  </script>
+
+  <!-- Real-Time Clock Script -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-GB');
+      document.getElementById('clock').innerText = `🕒 ${time}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+<script>
+  function acceptDisclaimer() {
+    document.getElementById("disclaimer-modal").style.display = "none";
+  }
+</script>
 
     <!-- WhatsApp Redirect Script -->
     <script>
@@ -443,7 +635,8 @@
         function closeDisclaimer() {
             document.getElementById('disclaimer-overlay').style.display = 'none';
         }
-    </script>
+</script>
 
 </body>
+
 </html>
